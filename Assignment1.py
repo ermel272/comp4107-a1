@@ -1,6 +1,8 @@
 
 # coding: utf-8
 
+# This assignment has been included as a python file, pdf, and its py notebook file. The python files were exported from Jupyter notebook (note that some of the tables do not show up in this format). The reccomendation is to view the code as a jupyter notebook file, although execution of the python code paired with the pdf should be enough.
+
 # # Question 1
 # 
 # The notes on linear algebra contain an example on singular value decomposition. See the slide entitled, 'Modelling "Person" -- SVD'. Write python code to reproduce the calculations related to the calculation of the prediction of Alice's rating of the movie "Eat Pray Love". The answer to be reproduced is shown on the slide entitled 'Example for SVD-based recommendation'.
@@ -350,18 +352,22 @@ print "requires %d bits if string w/ noise is encoded optimally\n" % round(entro
 # $$
 # \begin{align}
 # 	DL_{KL}(P||Q) &= \int_{-\infty}^{\infty}p(x)\bigg{(}\ln({P(x)}) - \ln({Q(x)})\bigg{)}\\
-# 	&= \int_{\infty}^{\infty}\lambda e^{-\lambda x}\bigg{(}\ln({\lambda e^{-\lambda x}}) - \ln({\lambda_0 e^{-\lambda_0 x}})\bigg{)}\\
-# 	&= \int_{\infty}^{\infty}\lambda e^{-\lambda x}\bigg{(}-\lambda x\ln({\lambda} + 1)) - (-\lambda_0 x(\ln{\lambda_0} + 1)\bigg{)}\\
+# 	&= \int_{-\infty}^{\infty}\lambda e^{-\lambda x}\bigg{(}\ln({\lambda e^{-\lambda x}}) - \ln({\lambda_0 e^{-\lambda_0 x}})\bigg{)}\\
+# 	&= \int_{-\infty}^{\infty}\lambda e^{-\lambda x}\bigg{(}-\lambda x(\ln({\lambda}) + \ln(e)) - (-\lambda_0 x(\ln({\lambda_0}) + \ln(e))\bigg{)}\\
+#     &= \int_{-\infty}^{\infty}\lambda e^{-\lambda x}\bigg{(}-\lambda x(\ln({\lambda}) + 1) - (-\lambda_0 x(\ln({\lambda_0}) + 1)\bigg{)}\\
 # 	&=\int_{-\infty}^{\infty}\lambda e^{-\lambda x}(-\lambda x \ln(\lambda)-\lambda x + \lambda_0 x \ln(\lambda_0)- \lambda_0 x)\\
 # 	&=\int_{-\infty}^{\infty} -\lambda^2x \ln(\lambda)e^{-\lambda x}- \lambda^2 x e^{-\lambda x} + \lambda \lambda_0 x \ln(\lambda_0)e^{-\lambda x} - \lambda \lambda_0 x e^{-\lambda x}\\
 # 	&= \lambda \bigg{(} \int_{-\infty}^{\infty} - \lambda x \ln({\lambda})e^{- \lambda x} - \lambda x e^{-\lambda x} + \lambda_0 x \ln({\lambda_0}) e^{-\lambda x} - \lambda_0 x e^{- \lambda x} \bigg{)}\\
 # 	&=\lambda \bigg{(}- \lambda \ln({\lambda}) \int_{-\infty}^{\infty} x e^{- \lambda x} - \lambda \int_{-\infty}^{\infty} x e^{- \lambda x} + \lambda_0 \ln({\lambda_0}) \int_{-\infty}^{\infty} e^{-\lambda x} - \lambda_0 \int_{-\infty}^{\infty} x e^{- \lambda x}\bigg{)}\\
 # 	&= \lambda \bigg{[} \int_{-\infty}^{\infty} xe^{-\lambda x} \bigg{(} -\lambda \ln(\lambda) - \lambda + \lambda{}_0 \ln(\lambda{}_0) - \lambda{}_0 \bigg{)} \bigg{]} \\
-# 	&= \lambda \bigg{[} \bigg{[} \frac{x}{-\lambda} - \frac{1}{(-\lambda)^2} \bigg{]} e^{(\lambda x)} \big{(} -\lambda \ln(\lambda) - \lambda + \lambda{}_0 \ln(\lambda{}_0) - \lambda{}_0 \big{)} \bigg{]}
+#     	&= \lambda \bigg{[} \int_{-\infty}^{\infty} xe^{-\lambda x} \bigg{(} -\lambda (\ln(\lambda) + 1) + \lambda{}_0 (\ln(\lambda{}_0) - 1) \bigg{)} \bigg{]} && \text{(1)}\\
+# 	&= \lambda \bigg{[} \bigg{[} \frac{x}{-\lambda} - \frac{1}{(-\lambda)^2} \bigg{]} e^{(\lambda x)} \bigg{(} -\lambda (\ln(\lambda) + 1) + \lambda{}_0 (\ln(\lambda{}_0) - 1) \bigg{)} \bigg{]}
 # \end{align}
 # $$
 # 
 # Which is a closed form solution to the above integral. Note that we collaborated with Michael Berthelot and Brandon Marshall to reach this solution, however solutions were written up independently.
+# 
+# (1): We apply rule 53 from integral table seen here: http://integral-table.com/downloads/single-page-integral-table.pdf
 
 # # Question 11
 # ----------------------
